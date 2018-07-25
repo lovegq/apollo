@@ -14,11 +14,11 @@ public interface AppNamespaceRepository extends PagingAndSortingRepository<AppNa
 
   List<AppNamespace> findByAppIdAndNameIn(String appId, Set<String> namespaceNames);
 
-  AppNamespace findByNameAndIsPublicTrue(String namespaceName);
+  AppNamespace findByNameAndPubliccIsTrue(String namespaceName);
 
-  List<AppNamespace> findByNameInAndIsPublicTrue(Set<String> namespaceNames);
+  List<AppNamespace> findByNameInAndPubliccIsTrue(Set<String> namespaceNames);
 
-  List<AppNamespace> findByAppIdAndIsPublic(String appId, boolean isPublic);
+  List<AppNamespace> findByAppIdAndPublicc(String appId, boolean publicc);
 
   List<AppNamespace> findByAppId(String appId);
 

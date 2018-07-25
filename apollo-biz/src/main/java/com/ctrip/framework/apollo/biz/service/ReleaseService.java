@@ -69,7 +69,7 @@ public class ReleaseService {
 
 
   public Release findActiveOne(long releaseId) {
-    return releaseRepository.findByIdAndIsAbandonedFalse(releaseId);
+    return releaseRepository.findByIdAndAbandonedIsFalse(releaseId);
   }
 
   public List<Release> findByReleaseIds(Set<Long> releaseIds) {
@@ -91,7 +91,7 @@ public class ReleaseService {
   }
 
   public Release findLatestActiveRelease(String appId, String clusterName, String namespaceName) {
-    return releaseRepository.findFirstByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(appId,
+    return releaseRepository.findFirstByAppIdAndClusterNameAndNamespaceNameAndAbandonedIsFalseOrderByIdDesc(appId,
                                                                                                             clusterName,
                                                                                                             namespaceName);
   }
@@ -110,7 +110,7 @@ public class ReleaseService {
   public List<Release> findActiveReleases(String appId, String clusterName, String namespaceName, Pageable page) {
     List<Release>
         releases =
-        releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(appId, clusterName,
+        releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndAbandonedIsFalseOrderByIdDesc(appId, clusterName,
                                                                                                     namespaceName,
                                                                                                     page);
     if (releases == null) {

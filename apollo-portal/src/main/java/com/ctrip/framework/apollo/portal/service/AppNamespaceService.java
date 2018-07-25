@@ -33,11 +33,11 @@ public class AppNamespaceService {
    * 公共的app ns,能被其它项目关联到的app ns
    */
   public List<AppNamespace> findPublicAppNamespaces() {
-    return appNamespaceRepository.findByIsPublicTrue();
+    return appNamespaceRepository.findByPubliccIsTrue();
   }
 
   public AppNamespace findPublicAppNamespace(String namespaceName) {
-    return appNamespaceRepository.findByNameAndIsPublic(namespaceName, true);
+    return appNamespaceRepository.findByNameAndPublicc(namespaceName, true);
   }
 
   public AppNamespace findByAppIdAndName(String appId, String namespaceName) {

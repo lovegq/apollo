@@ -8,27 +8,29 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "AppNamespace")
-@SQLDelete(sql = "Update AppNamespace set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "app_namespace")
+@SQLDelete(sql = "UPDATE app_namespace SET deleted = TRUE WHERE id = ?")
+@Where(clause = "NOT deleted")
+@SequenceGenerator(name = "sequence", sequenceName = "app_namespace_id_seq", allocationSize = 1)
 public class AppNamespace extends BaseEntity {
 
-  @Column(name = "Name", nullable = false)
+  @Column(name = "namespace_name", nullable = false)
   private String name;
 
-  @Column(name = "AppId", nullable = false)
+  @Column(name = "app_id", nullable = false)
   private String appId;
 
-  @Column(name = "Format", nullable = false)
+  @Column(name = "format", nullable = false)
   private String format;
 
-  @Column(name = "IsPublic", columnDefinition = "Bit default '0'")
-  private boolean isPublic = false;
+  @Column(name = "shared")
+  private boolean publicc = false;
 
-  @Column(name = "Comment")
+  @Column(name = "comment")
   private String comment;
 
   public String getAppId() {
@@ -56,11 +58,11 @@ public class AppNamespace extends BaseEntity {
   }
 
   public boolean isPublic() {
-    return isPublic;
+    return publicc;
   }
 
-  public void setPublic(boolean aPublic) {
-    isPublic = aPublic;
+  public void setPublic(boolean publicc) {
+    this.publicc = publicc;
   }
 
   public ConfigFileFormat formatAsEnum() {
@@ -77,6 +79,6 @@ public class AppNamespace extends BaseEntity {
 
   public String toString() {
     return toStringHelper().add("name", name).add("appId", appId).add("comment", comment)
-        .add("format", format).add("isPublic", isPublic).toString();
+        .add("format", format).add("isPublic", publicc).toString();
   }
 }

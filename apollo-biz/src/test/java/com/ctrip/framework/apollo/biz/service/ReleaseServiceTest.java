@@ -80,7 +80,7 @@ public class ReleaseServiceTest extends AbstractUnitTest {
   public void testHasNoRelease() {
 
     when(releaseRepository.findOne(releaseId)).thenReturn(firstRelease);
-    when(releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(appId,
+    when(releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndAbandonedIsFalseOrderByIdDesc(appId,
                                                                                                      clusterName,
                                                                                                      namespaceName,
                                                                                                      pageRequest))
@@ -93,7 +93,7 @@ public class ReleaseServiceTest extends AbstractUnitTest {
   public void testRollback() {
 
     when(releaseRepository.findOne(releaseId)).thenReturn(firstRelease);
-    when(releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(appId,
+    when(releaseRepository.findByAppIdAndClusterNameAndNamespaceNameAndAbandonedIsFalseOrderByIdDesc(appId,
                                                                                                      clusterName,
                                                                                                      namespaceName,
                                                                                                      pageRequest))
@@ -122,7 +122,7 @@ public class ReleaseServiceTest extends AbstractUnitTest {
                         someNamespaceName,
                         someValidConfiguration);
 
-    when(releaseRepository.findFirstByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(someAppId,
+    when(releaseRepository.findFirstByAppIdAndClusterNameAndNamespaceNameAndAbandonedIsFalseOrderByIdDesc(someAppId,
                                                                                                           someClusterName,
                                                                                                           someNamespaceName))
         .thenReturn(someRelease);
@@ -130,7 +130,7 @@ public class ReleaseServiceTest extends AbstractUnitTest {
     Release result = releaseService.findLatestActiveRelease(someAppId, someClusterName, someNamespaceName);
 
     verify(releaseRepository, times(1))
-        .findFirstByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(someAppId, someClusterName,
+        .findFirstByAppIdAndClusterNameAndNamespaceNameAndAbandonedIsFalseOrderByIdDesc(someAppId, someClusterName,
                                                                                         someNamespaceName);
     assertEquals(someAppId, result.getAppId());
     assertEquals(someClusterName, result.getClusterName());
@@ -145,7 +145,7 @@ public class ReleaseServiceTest extends AbstractUnitTest {
     String someClusterName = "someClusterName";
     String someNamespaceName = "someNamespaceName";
 
-    when(releaseRepository.findFirstByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(someAppId,
+    when(releaseRepository.findFirstByAppIdAndClusterNameAndNamespaceNameAndAbandonedIsFalseOrderByIdDesc(someAppId,
                                                                                                           someClusterName,
                                                                                                           someNamespaceName))
         .thenReturn(null);
@@ -153,7 +153,7 @@ public class ReleaseServiceTest extends AbstractUnitTest {
     Release result = releaseService.findLatestActiveRelease(someAppId, someClusterName, someNamespaceName);
 
     assertNull(result);
-    verify(releaseRepository, times(1)).findFirstByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(
+    verify(releaseRepository, times(1)).findFirstByAppIdAndClusterNameAndNamespaceNameAndAbandonedIsFalseOrderByIdDesc(
         someAppId, someClusterName, someNamespaceName);
   }
 

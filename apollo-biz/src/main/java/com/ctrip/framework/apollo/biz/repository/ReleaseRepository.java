@@ -16,21 +16,21 @@ import java.util.Set;
  */
 public interface ReleaseRepository extends PagingAndSortingRepository<Release, Long> {
 
-  Release findFirstByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(@Param("appId") String appId, @Param("clusterName") String clusterName,
+  Release findFirstByAppIdAndClusterNameAndNamespaceNameAndAbandonedIsFalseOrderByIdDesc(@Param("appId") String appId, @Param("clusterName") String clusterName,
                                                                                          @Param("namespaceName") String namespaceName);
 
-  Release findByIdAndIsAbandonedFalse(long id);
+  Release findByIdAndAbandonedIsFalse(long id);
 
   List<Release> findByAppIdAndClusterNameAndNamespaceNameOrderByIdDesc(String appId, String clusterName, String namespaceName, Pageable page);
 
-  List<Release> findByAppIdAndClusterNameAndNamespaceNameAndIsAbandonedFalseOrderByIdDesc(String appId, String clusterName, String namespaceName, Pageable page);
+  List<Release> findByAppIdAndClusterNameAndNamespaceNameAndAbandonedIsFalseOrderByIdDesc(String appId, String clusterName, String namespaceName, Pageable page);
 
   List<Release> findByReleaseKeyIn(Set<String> releaseKey);
 
   List<Release> findByIdIn(Set<Long> releaseIds);
 
   @Modifying
-  @Query("update Release set isdeleted=1,DataChange_LastModifiedBy = ?4 where appId=?1 and clusterName=?2 and namespaceName = ?3")
+  @Query("UPDATE Release SET deleted = TRUE, dataChangeLastModifiedBy = ?4 WHERE appId =?1 AND clusterName = ?2 AND namespaceName = ?3")
   int batchDelete(String appId, String clusterName, String namespaceName, String operator);
 
   // For release history conversion program, need to delete after conversion it done
