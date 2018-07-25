@@ -33,7 +33,7 @@ Java客户端不依赖任何框架，能够运行于所有Java运行时环境，
   * 部分HQL调整
   * 部分SQL调整
 * Mysql Driver替换为PostgreSQL Driver(版本:42.2.4)
-* 加入`hibernate.dialect`与`hibernate.temp.use_jdbc_metadata_defaults`配置
+* 加入`hibernate.dialect`与`hibernate.temp.use_jdbc_metadata_defaults`配置(使CockroachDB可用)
 * 去掉`spring.datasource.initSQL=set names utf8mb4`
 
 使用[PostgreSQL 9.5](https://www.postgresql.org/)与[CockroachDB 2.0.3](https://www.cockroachlabs.com/)手动测试通过,如发现Bug,请在issue中提出.
