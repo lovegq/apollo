@@ -20,7 +20,7 @@ Java客户端不依赖任何框架，能够运行于所有Java运行时环境，
 
 ## PostgreSQL适配
 
-基于[apollo v0.10.2](https://github.com/ctripcorp/apollo/tree/v0.10.2)对PostgreSQL做了适配，主要内容：
+基于[apollo v0.10.2](https://github.com/ctripcorp/apollo/tree/v0.10.2)对PostgreSQL做了适配，适配commit: https://github.com/xiao0yy/apollo/commit/62ffab4781523ab1b451ef7e16471b30b1fe1d0b ，主要内容：
 
 * 提供了pg风格的建表SQL: `scripts/sql/pg-configdb.sql`与`scripts/sql/pg-portaldb.sql`
   * 统一使用小写+下划线命名
