@@ -6,16 +6,18 @@ spring:
   cloud:
     consul:
       enabled: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: growingio
+    password: postgres
+    url: jdbc:postgresql://localhost:5532/apollo-config
 ctrip:
   appid: 100003171
-
 server:
   port: 8080
-
 logging:
   file:
     name: /Users/growingio/Documents/logs/apollo-configservice.log
-
 eureka:
   instance:
     hostname: ${hostname:localhost}
