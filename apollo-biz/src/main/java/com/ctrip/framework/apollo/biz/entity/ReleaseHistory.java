@@ -17,114 +17,124 @@
 package com.ctrip.framework.apollo.biz.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
-
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "ReleaseHistory")
-@SQLDelete(sql = "Update ReleaseHistory set isDeleted = 1 where id = ?")
+@Table(name = "release_history")
+@SQLDelete(sql = "Update release_history set isDeleted = 1 where id = ?")
 @Where(clause = "isDeleted = 0")
 public class ReleaseHistory extends BaseEntity {
-  @Column(name = "AppId", nullable = false)
-  private String appId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private long id;
+    @Column(name = "app_id", nullable = false)
+    private String appId;
 
-  @Column(name = "ClusterName", nullable = false)
-  private String clusterName;
+    @Column(name = "cluster_name", nullable = false)
+    private String clusterName;
 
-  @Column(name = "NamespaceName", nullable = false)
-  private String namespaceName;
+    @Column(name = "namespace_name", nullable = false)
+    private String namespaceName;
 
-  @Column(name = "BranchName", nullable = false)
-  private String branchName;
+    @Column(name = "branch_name", nullable = false)
+    private String branchName;
 
-  @Column(name = "ReleaseId")
-  private long releaseId;
+    @Column(name = "release_id")
+    private long releaseId;
 
-  @Column(name = "PreviousReleaseId")
-  private long previousReleaseId;
+    @Column(name = "previous_release_id")
+    private long previousReleaseId;
 
-  @Column(name = "Operation")
-  private int operation;
+    @Column(name = "operation")
+    private int operation;
 
-  @Column(name = "OperationContext", nullable = false)
-  private String operationContext;
+    @Column(name = "operation_context", nullable = false)
+    private String operationContext;
 
-  public String getAppId() {
-    return appId;
-  }
+    public long getId() {
+        return id;
+    }
 
-  public void setAppId(String appId) {
-    this.appId = appId;
-  }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-  public String getClusterName() {
-    return clusterName;
-  }
+    public String getAppId() {
+        return appId;
+    }
 
-  public void setClusterName(String clusterName) {
-    this.clusterName = clusterName;
-  }
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
 
-  public String getNamespaceName() {
-    return namespaceName;
-  }
+    public String getClusterName() {
+        return clusterName;
+    }
 
-  public void setNamespaceName(String namespaceName) {
-    this.namespaceName = namespaceName;
-  }
+    public void setClusterName(String clusterName) {
+        this.clusterName = clusterName;
+    }
 
-  public String getBranchName() {
-    return branchName;
-  }
+    public String getNamespaceName() {
+        return namespaceName;
+    }
 
-  public void setBranchName(String branchName) {
-    this.branchName = branchName;
-  }
+    public void setNamespaceName(String namespaceName) {
+        this.namespaceName = namespaceName;
+    }
 
-  public long getReleaseId() {
-    return releaseId;
-  }
+    public String getBranchName() {
+        return branchName;
+    }
 
-  public void setReleaseId(long releaseId) {
-    this.releaseId = releaseId;
-  }
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
+    }
 
-  public long getPreviousReleaseId() {
-    return previousReleaseId;
-  }
+    public long getReleaseId() {
+        return releaseId;
+    }
 
-  public void setPreviousReleaseId(long previousReleaseId) {
-    this.previousReleaseId = previousReleaseId;
-  }
+    public void setReleaseId(long releaseId) {
+        this.releaseId = releaseId;
+    }
 
-  public int getOperation() {
-    return operation;
-  }
+    public long getPreviousReleaseId() {
+        return previousReleaseId;
+    }
 
-  public void setOperation(int operation) {
-    this.operation = operation;
-  }
+    public void setPreviousReleaseId(long previousReleaseId) {
+        this.previousReleaseId = previousReleaseId;
+    }
 
-  public String getOperationContext() {
-    return operationContext;
-  }
+    public int getOperation() {
+        return operation;
+    }
 
-  public void setOperationContext(String operationContext) {
-    this.operationContext = operationContext;
-  }
+    public void setOperation(int operation) {
+        this.operation = operation;
+    }
 
-  public String toString() {
-    return toStringHelper().add("appId", appId).add("clusterName", clusterName)
-        .add("namespaceName", namespaceName).add("branchName", branchName)
-        .add("releaseId", releaseId).add("previousReleaseId", previousReleaseId)
-        .add("operation", operation).toString();
-  }
+    public String getOperationContext() {
+        return operationContext;
+    }
+
+    public void setOperationContext(String operationContext) {
+        this.operationContext = operationContext;
+    }
+
+    @Override
+    public String toString() {
+        return toStringHelper().add("appId", appId).add("clusterName", clusterName)
+                .add("namespaceName", namespaceName).add("branchName", branchName)
+                .add("releaseId", releaseId).add("previousReleaseId", previousReleaseId)
+                .add("operation", operation).toString();
+    }
 }

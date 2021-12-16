@@ -33,7 +33,7 @@ import javax.persistence.Table;
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "InstanceConfig")
+@Table(name = "instance_config")
 public class InstanceConfig {
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

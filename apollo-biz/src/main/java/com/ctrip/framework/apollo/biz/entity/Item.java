@@ -20,17 +20,17 @@ import com.ctrip.framework.apollo.common.entity.BaseEntity;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Lob;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "Item")
-@SQLDelete(sql = "Update Item set isDeleted = 1 where id = ?")
+@Table(name = "item")
+@SQLDelete(sql = "Update item set isDeleted = 1 where id = ?")
 @Where(clause = "isDeleted = 0")
 public class Item extends BaseEntity {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id")
+    private long id;
     @Column(name = "NamespaceId", nullable = false)
     private long namespaceId;
 
@@ -87,6 +87,15 @@ public class Item extends BaseEntity {
         this.lineNum = lineNum;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Override
     public String toString() {
         return toStringHelper().add("namespaceId", namespaceId).add("key", key).add("value", value)
                 .add("lineNum", lineNum).add("comment", comment).toString();

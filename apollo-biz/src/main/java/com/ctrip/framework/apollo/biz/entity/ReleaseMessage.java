@@ -25,7 +25,7 @@ import java.util.Date;
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "ReleaseMessage")
+@Table(name = "release_message")
 public class ReleaseMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

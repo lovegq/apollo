@@ -20,52 +20,61 @@ import com.ctrip.framework.apollo.common.entity.BaseEntity;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "AccessKey")
-@SQLDelete(sql = "Update AccessKey set isDeleted = 1 where id = ?")
+@Table(name = "access_key")
+@SQLDelete(sql = "Update access_key set isDeleted = 1 where id = ?")
 @Where(clause = "isDeleted = 0")
 public class AccessKey extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id")
+    private long id;
+    @Column(name = "appId", nullable = false)
+    private String appId;
 
-  @Column(name = "appId", nullable = false)
-  private String appId;
+    @Column(name = "Secret", nullable = false)
+    private String secret;
 
-  @Column(name = "Secret", nullable = false)
-  private String secret;
+    @Column(name = "isEnabled", columnDefinition = "Bit default '0'")
+    private boolean enabled;
 
-  @Column(name = "isEnabled", columnDefinition = "Bit default '0'")
-  private boolean enabled;
+    public String getAppId() {
+        return appId;
+    }
 
-  public String getAppId() {
-    return appId;
-  }
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
 
-  public void setAppId(String appId) {
-    this.appId = appId;
-  }
+    public String getSecret() {
+        return secret;
+    }
 
-  public String getSecret() {
-    return secret;
-  }
+    public void setSecret(String secret) {
+        this.secret = secret;
+    }
 
-  public void setSecret(String secret) {
-    this.secret = secret;
-  }
+    public boolean isEnabled() {
+        return enabled;
+    }
 
-  public boolean isEnabled() {
-    return enabled;
-  }
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
-  public void setEnabled(boolean enabled) {
-    this.enabled = enabled;
-  }
+    public long getId() {
+        return id;
+    }
 
-  @Override
-  public String toString() {
-    return toStringHelper().add("appId", appId).add("secret", secret)
-        .add("enabled", enabled).toString();
-  }
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return toStringHelper().add("appId", appId).add("secret", secret)
+                .add("enabled", enabled).toString();
+    }
 }

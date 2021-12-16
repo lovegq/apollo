@@ -17,94 +17,102 @@
 package com.ctrip.framework.apollo.biz.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
-
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "GrayReleaseRule")
-@SQLDelete(sql = "Update GrayReleaseRule set isDeleted = 1 where id = ?")
+@Table(name = "gray_release_rule")
+@SQLDelete(sql = "Update gray_release_rule set isDeleted = 1 where id = ?")
 @Where(clause = "isDeleted = 0")
-public class GrayReleaseRule extends BaseEntity{
+public class GrayReleaseRule extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id")
+    private long id;
+    @Column(name = "appId", nullable = false)
+    private String appId;
 
-  @Column(name = "appId", nullable = false)
-  private String appId;
+    @Column(name = "ClusterName", nullable = false)
+    private String clusterName;
 
-  @Column(name = "ClusterName", nullable = false)
-  private String clusterName;
+    @Column(name = "NamespaceName", nullable = false)
+    private String namespaceName;
 
-  @Column(name = "NamespaceName", nullable = false)
-  private String namespaceName;
+    @Column(name = "BranchName", nullable = false)
+    private String branchName;
 
-  @Column(name = "BranchName", nullable = false)
-  private String branchName;
+    @Column(name = "Rules")
+    private String rules;
 
-  @Column(name = "Rules")
-  private String rules;
+    @Column(name = "releaseId", nullable = false)
+    private Long releaseId;
 
-  @Column(name = "releaseId", nullable = false)
-  private Long releaseId;
+    @Column(name = "BranchStatus", nullable = false)
+    private int branchStatus;
 
-  @Column(name = "BranchStatus", nullable = false)
-  private int branchStatus;
+    public long getId() {
+        return id;
+    }
 
-  public String getAppId() {
-    return appId;
-  }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-  public void setAppId(String appId) {
-    this.appId = appId;
-  }
+    public String getAppId() {
+        return appId;
+    }
 
-  public String getClusterName() {
-    return clusterName;
-  }
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
 
-  public void setClusterName(String clusterName) {
-    this.clusterName = clusterName;
-  }
+    public String getClusterName() {
+        return clusterName;
+    }
 
-  public String getNamespaceName() {
-    return namespaceName;
-  }
+    public void setClusterName(String clusterName) {
+        this.clusterName = clusterName;
+    }
 
-  public void setNamespaceName(String namespaceName) {
-    this.namespaceName = namespaceName;
-  }
+    public String getNamespaceName() {
+        return namespaceName;
+    }
 
-  public String getBranchName() {
-    return branchName;
-  }
+    public void setNamespaceName(String namespaceName) {
+        this.namespaceName = namespaceName;
+    }
 
-  public void setBranchName(String branchName) {
-    this.branchName = branchName;
-  }
+    public String getBranchName() {
+        return branchName;
+    }
 
-  public String getRules() {
-    return rules;
-  }
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
+    }
 
-  public void setRules(String rules) {
-    this.rules = rules;
-  }
+    public String getRules() {
+        return rules;
+    }
 
-  public Long getReleaseId() {
-    return releaseId;
-  }
+    public void setRules(String rules) {
+        this.rules = rules;
+    }
 
-  public void setReleaseId(Long releaseId) {
-    this.releaseId = releaseId;
-  }
+    public Long getReleaseId() {
+        return releaseId;
+    }
 
-  public int getBranchStatus() {
-    return branchStatus;
-  }
+    public void setReleaseId(Long releaseId) {
+        this.releaseId = releaseId;
+    }
 
-  public void setBranchStatus(int branchStatus) {
-    this.branchStatus = branchStatus;
-  }
+    public int getBranchStatus() {
+        return branchStatus;
+    }
+
+    public void setBranchStatus(int branchStatus) {
+        this.branchStatus = branchStatus;
+    }
 }

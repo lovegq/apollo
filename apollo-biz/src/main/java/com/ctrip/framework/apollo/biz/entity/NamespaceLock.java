@@ -17,26 +17,34 @@
 package com.ctrip.framework.apollo.biz.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
-
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "NamespaceLock")
+@Table(name = "namespace_lock")
 @Where(clause = "isDeleted = 0")
-public class NamespaceLock extends BaseEntity{
+public class NamespaceLock extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id")
+    private long id;
+    @Column(name = "NamespaceId")
+    private long namespaceId;
 
-  @Column(name = "NamespaceId")
-  private long namespaceId;
+    public long getId() {
+        return id;
+    }
 
-  public long getNamespaceId() {
-    return namespaceId;
-  }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-  public void setNamespaceId(long namespaceId) {
-    this.namespaceId = namespaceId;
-  }
+    public long getNamespaceId() {
+        return namespaceId;
+    }
+
+    public void setNamespaceId(long namespaceId) {
+        this.namespaceId = namespaceId;
+    }
 }

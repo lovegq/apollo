@@ -20,18 +20,22 @@ import com.ctrip.framework.apollo.common.entity.BaseEntity;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Jason Song(song_s@ctrip.com)
  */
-@Entity
-@Table(name = "ServerConfig")
-@SQLDelete(sql = "Update ServerConfig set isDeleted = 1 where id = ?")
+@Table(name = "server_config")
+@SQLDelete(sql = "Update server_config set isDeleted = 1 where id = ?")
 @Where(clause = "isDeleted = 0")
+@Entity
 public class ServerConfig extends BaseEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id")
+    private long id;
+
     @Column(name = "Key", nullable = false)
     private String key;
 
@@ -43,6 +47,15 @@ public class ServerConfig extends BaseEntity {
 
     @Column(name = "Comment", nullable = false)
     private String comment;
+
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
 
     public String getKey() {
         return key;

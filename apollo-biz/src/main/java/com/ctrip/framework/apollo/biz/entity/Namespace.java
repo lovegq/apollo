@@ -17,65 +17,74 @@
 package com.ctrip.framework.apollo.biz.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
-
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "Namespace")
-@SQLDelete(sql = "Update Namespace set isDeleted = 1 where id = ?")
+@Table(name = "namespace")
+@SQLDelete(sql = "Update namespace set isDeleted = 1 where id = ?")
 @Where(clause = "isDeleted = 0")
 public class Namespace extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "Id")
+    private long id;
+    @Column(name = "appId", nullable = false)
+    private String appId;
 
-  @Column(name = "appId", nullable = false)
-  private String appId;
+    @Column(name = "ClusterName", nullable = false)
+    private String clusterName;
 
-  @Column(name = "ClusterName", nullable = false)
-  private String clusterName;
+    @Column(name = "NamespaceName", nullable = false)
+    private String namespaceName;
 
-  @Column(name = "NamespaceName", nullable = false)
-  private String namespaceName;
+    public Namespace() {
 
-  public Namespace(){
+    }
 
-  }
+    public Namespace(String appId, String clusterName, String namespaceName) {
+        this.appId = appId;
+        this.clusterName = clusterName;
+        this.namespaceName = namespaceName;
+    }
 
-  public Namespace(String appId, String clusterName, String namespaceName) {
-    this.appId = appId;
-    this.clusterName = clusterName;
-    this.namespaceName = namespaceName;
-  }
+    public long getId() {
+        return id;
+    }
 
-  public String getAppId() {
-    return appId;
-  }
+    public void setId(long id) {
+        this.id = id;
+    }
 
-  public String getClusterName() {
-    return clusterName;
-  }
+    public String getAppId() {
+        return appId;
+    }
 
-  public String getNamespaceName() {
-    return namespaceName;
-  }
+    public String getClusterName() {
+        return clusterName;
+    }
 
-  public void setAppId(String appId) {
-    this.appId = appId;
-  }
+    public String getNamespaceName() {
+        return namespaceName;
+    }
 
-  public void setClusterName(String clusterName) {
-    this.clusterName = clusterName;
-  }
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
 
-  public void setNamespaceName(String namespaceName) {
-    this.namespaceName = namespaceName;
-  }
+    public void setClusterName(String clusterName) {
+        this.clusterName = clusterName;
+    }
 
-  public String toString() {
-    return toStringHelper().add("appId", appId).add("clusterName", clusterName)
-        .add("namespaceName", namespaceName).toString();
-  }
+    public void setNamespaceName(String namespaceName) {
+        this.namespaceName = namespaceName;
+    }
+
+    @Override
+    public String toString() {
+        return toStringHelper().add("appId", appId).add("clusterName", clusterName)
+                .add("namespaceName", namespaceName).toString();
+    }
 }
