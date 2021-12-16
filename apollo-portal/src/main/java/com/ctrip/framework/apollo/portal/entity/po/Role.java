@@ -23,24 +23,39 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "Role")
-@SQLDelete(sql = "Update Role set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "role")
+@SQLDelete(sql = "Update role set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 public class Role extends BaseEntity {
-  @Column(name = "RoleName", nullable = false)
-  private String roleName;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private long id;
+	@Column(name = "role_name", nullable = false)
+	private String roleName;
 
-  public String getRoleName() {
-    return roleName;
-  }
+	public long getId() {
+		return id;
+	}
 
-  public void setRoleName(String roleName) {
-    this.roleName = roleName;
-  }
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
 }

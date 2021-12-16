@@ -23,40 +23,55 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "ConsumerRole")
-@SQLDelete(sql = "Update ConsumerRole set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "consumer_role")
+@SQLDelete(sql = "Update consumer_role set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 public class ConsumerRole extends BaseEntity {
-  @Column(name = "ConsumerId", nullable = false)
-  private long consumerId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private long id;
+	@Column(name = "consumer_id", nullable = false)
+	private long consumerId;
 
-  @Column(name = "RoleId", nullable = false)
-  private long roleId;
+	@Column(name = "role_id", nullable = false)
+	private long roleId;
 
-  public long getConsumerId() {
-    return consumerId;
-  }
+	public long getId() {
+		return id;
+	}
 
-  public void setConsumerId(long consumerId) {
-    this.consumerId = consumerId;
-  }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-  public long getRoleId() {
-    return roleId;
-  }
+	public long getConsumerId() {
+		return consumerId;
+	}
 
-  public void setRoleId(long roleId) {
-    this.roleId = roleId;
-  }
+	public void setConsumerId(long consumerId) {
+		this.consumerId = consumerId;
+	}
 
-  @Override
-  public String toString() {
-    return toStringHelper().add("consumerId", consumerId).add("roleId", roleId).toString();
-  }
+	public long getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(long roleId) {
+		this.roleId = roleId;
+	}
+
+	@Override
+	public String toString() {
+		return toStringHelper().add("consumerId", consumerId).add("roleId", roleId).toString();
+	}
 }

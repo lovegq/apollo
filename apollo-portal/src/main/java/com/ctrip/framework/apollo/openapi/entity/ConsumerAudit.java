@@ -32,26 +32,26 @@ import javax.persistence.Table;
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "ConsumerAudit")
+@Table(name = "consumer_audit")
 public class ConsumerAudit {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Column(name = "Id")
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Column(name = "id")
   private long id;
 
-  @Column(name = "ConsumerId", nullable = false)
+  @Column(name = "consumer_id", nullable = false)
   private long consumerId;
 
-  @Column(name = "Uri", nullable = false)
+  @Column(name = "uri", nullable = false)
   private String uri;
 
-  @Column(name = "Method", nullable = false)
+  @Column(name = "method", nullable = false)
   private String method;
 
-  @Column(name = "DataChange_CreatedTime")
+  @Column(name = "data_change_created_time")
   private Date dataChangeCreatedTime;
 
-  @Column(name = "DataChange_LastTime")
+  @Column(name = "data_change_last_time")
   private Date dataChangeLastModifiedTime;
 
   @PrePersist

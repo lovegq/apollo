@@ -23,35 +23,50 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "Permission")
-@SQLDelete(sql = "Update Permission set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "permission")
+@SQLDelete(sql = "update permission set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 public class Permission extends BaseEntity {
-  @Column(name = "PermissionType", nullable = false)
-  private String permissionType;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private long id;
+	@Column(name = "permission_type", nullable = false)
+	private String permissionType;
 
-  @Column(name = "TargetId", nullable = false)
-  private String targetId;
+	@Column(name = "target_id", nullable = false)
+	private String targetId;
 
-  public String getPermissionType() {
-    return permissionType;
-  }
+	public long getId() {
+		return id;
+	}
 
-  public void setPermissionType(String permissionType) {
-    this.permissionType = permissionType;
-  }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-  public String getTargetId() {
-    return targetId;
-  }
+	public String getPermissionType() {
+		return permissionType;
+	}
 
-  public void setTargetId(String targetId) {
-    this.targetId = targetId;
-  }
+	public void setPermissionType(String permissionType) {
+		this.permissionType = permissionType;
+	}
+
+	public String getTargetId() {
+		return targetId;
+	}
+
+	public void setTargetId(String targetId) {
+		this.targetId = targetId;
+	}
 }

@@ -23,44 +23,58 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Favorite")
-@SQLDelete(sql = "Update Favorite set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "favorite")
+@SQLDelete(sql = "update favorite set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 public class Favorite extends BaseEntity {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private long id;
+	@Column(name = "app_id", nullable = false)
+	private String appId;
 
-  @Column(name = "AppId", nullable = false)
-  private String appId;
+	@Column(name = "user_id", nullable = false)
+	private String userId;
 
-  @Column(name = "UserId", nullable = false)
-  private String userId;
+	@Column(name = "position")
+	private long position;
 
-  @Column(name = "Position")
-  private long position;
+	public long getId() {
+		return id;
+	}
 
-  public String getAppId() {
-    return appId;
-  }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-  public void setAppId(String appId) {
-    this.appId = appId;
-  }
+	public String getAppId() {
+		return appId;
+	}
 
-  public String getUserId() {
-    return userId;
-  }
+	public void setAppId(String appId) {
+		this.appId = appId;
+	}
 
-  public void setUserId(String userId) {
-    this.userId = userId;
-  }
+	public String getUserId() {
+		return userId;
+	}
 
-  public long getPosition() {
-    return position;
-  }
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
-  public void setPosition(long position) {
-    this.position = position;
-  }
+	public long getPosition() {
+		return position;
+	}
+
+	public void setPosition(long position) {
+		this.position = position;
+	}
 }

@@ -23,86 +23,98 @@ import org.hibernate.annotations.Where;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Consumer")
-@SQLDelete(sql = "Update Consumer set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "consumer")
+@SQLDelete(sql = "Update consumer set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 public class Consumer extends BaseEntity {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private long id;
+	@Column(name = "name", nullable = false)
+	private String name;
 
-  @Column(name = "Name", nullable = false)
-  private String name;
+	@Column(name = "app_id", nullable = false)
+	private String appId;
 
-  @Column(name = "AppId", nullable = false)
-  private String appId;
+	@Column(name = "org_id", nullable = false)
+	private String orgId;
 
-  @Column(name = "OrgId", nullable = false)
-  private String orgId;
+	@Column(name = "org_name", nullable = false)
+	private String orgName;
 
-  @Column(name = "OrgName", nullable = false)
-  private String orgName;
+	@Column(name = "owner_name", nullable = false)
+	private String ownerName;
 
-  @Column(name = "OwnerName", nullable = false)
-  private String ownerName;
+	@Column(name = "owner_email", nullable = false)
+	private String ownerEmail;
 
-  @Column(name = "OwnerEmail", nullable = false)
-  private String ownerEmail;
+	
+	public long getId() {
+		return id;
+	}
 
-  public String getAppId() {
-    return appId;
-  }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-  public String getName() {
-    return name;
-  }
+	public String getAppId() {
+		return appId;
+	}
 
-  public String getOrgId() {
-    return orgId;
-  }
+	public String getName() {
+		return name;
+	}
 
-  public String getOrgName() {
-    return orgName;
-  }
+	public String getOrgId() {
+		return orgId;
+	}
 
-  public String getOwnerEmail() {
-    return ownerEmail;
-  }
+	public String getOrgName() {
+		return orgName;
+	}
 
-  public String getOwnerName() {
-    return ownerName;
-  }
+	public String getOwnerEmail() {
+		return ownerEmail;
+	}
 
-  public void setAppId(String appId) {
-    this.appId = appId;
-  }
+	public String getOwnerName() {
+		return ownerName;
+	}
 
-  public void setName(String name) {
-    this.name = name;
-  }
+	public void setAppId(String appId) {
+		this.appId = appId;
+	}
 
-  public void setOrgId(String orgId) {
-    this.orgId = orgId;
-  }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-  public void setOrgName(String orgName) {
-    this.orgName = orgName;
-  }
+	public void setOrgId(String orgId) {
+		this.orgId = orgId;
+	}
 
-  public void setOwnerEmail(String ownerEmail) {
-    this.ownerEmail = ownerEmail;
-  }
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
 
-  public void setOwnerName(String ownerName) {
-    this.ownerName = ownerName;
-  }
+	public void setOwnerEmail(String ownerEmail) {
+		this.ownerEmail = ownerEmail;
+	}
 
-  @Override
-  public String toString() {
-    return toStringHelper().add("name", name).add("appId", appId)
-        .add("orgId", orgId)
-        .add("orgName", orgName)
-        .add("ownerName", ownerName)
-        .add("ownerEmail", ownerEmail).toString();
-  }
+	public void setOwnerName(String ownerName) {
+		this.ownerName = ownerName;
+	}
+
+	@Override
+	public String toString() {
+		return toStringHelper().add("name", name).add("appId", appId).add("orgId", orgId).add("orgName", orgName)
+				.add("ownerName", ownerName).add("ownerEmail", ownerEmail).toString();
+	}
 }

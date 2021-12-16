@@ -25,52 +25,66 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
-@Table(name = "ConsumerToken")
-@SQLDelete(sql = "Update ConsumerToken set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@Table(name = "consumer_token")
+@SQLDelete(sql = "Update consumer_token set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 public class ConsumerToken extends BaseEntity {
-  @Column(name = "ConsumerId", nullable = false)
-  private long consumerId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private long id;
+	@Column(name = "consumer_id", nullable = false)
+	private long consumerId;
 
-  @Column(name = "token", nullable = false)
-  private String token;
+	@Column(name = "token", nullable = false)
+	private String token;
 
-  @Column(name = "Expires", nullable = false)
-  private Date expires;
+	@Column(name = "expires", nullable = false)
+	private Date expires;
 
-  public long getConsumerId() {
-    return consumerId;
-  }
+	public long getId() {
+		return id;
+	}
 
-  public void setConsumerId(long consumerId) {
-    this.consumerId = consumerId;
-  }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-  public String getToken() {
-    return token;
-  }
+	public long getConsumerId() {
+		return consumerId;
+	}
 
-  public void setToken(String token) {
-    this.token = token;
-  }
+	public void setConsumerId(long consumerId) {
+		this.consumerId = consumerId;
+	}
 
-  public Date getExpires() {
-    return expires;
-  }
+	public String getToken() {
+		return token;
+	}
 
-  public void setExpires(Date expires) {
-    this.expires = expires;
-  }
+	public void setToken(String token) {
+		this.token = token;
+	}
 
-  @Override
-  public String toString() {
-    return toStringHelper().add("consumerId", consumerId).add("token", token)
-        .add("expires", expires).toString();
-  }
+	public Date getExpires() {
+		return expires;
+	}
+
+	public void setExpires(Date expires) {
+		this.expires = expires;
+	}
+
+	@Override
+	public String toString() {
+		return toStringHelper().add("consumerId", consumerId).add("token", token).add("expires", expires).toString();
+	}
 }
