@@ -1,6 +1,10 @@
 spring:
   application:
     name: apollo-adminservice
+  datasource:
+    url: jdbc:postgresql://localhost:5532/apollo-config
+    username: growingio
+    password: postgres
   cloud:
     consul:
       enabled: false

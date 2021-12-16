@@ -1,6 +1,10 @@
 spring:
   application:
     name: apollo-configservice
+  datasource:
+    url: jdbc:postgresql://localhost:5532/apollo-config
+    username: growingio
+    password: postgres
   profiles:
     active: dev
   cloud:

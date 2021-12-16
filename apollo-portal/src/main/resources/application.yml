@@ -10,6 +10,10 @@ spring:
     store-type: jdbc
     jdbc:
       initialize-schema: never
+  datasource:
+    url: jdbc:postgresql://localhost:5532/apollo-portal
+    username: growingio
+    password: postgres
 server:
   port: 8070
   compression:
