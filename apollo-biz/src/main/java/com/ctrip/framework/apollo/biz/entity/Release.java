@@ -56,7 +56,7 @@ public class Release extends BaseEntity {
     @Column(name = "comment", nullable = false)
     private String comment;
 
-    @Column(name = "is_abandoned", columnDefinition = "Bit default '0'")
+    @Column(name = "is_abandoned")
     private boolean isAbandoned;
 
     public long getId() {

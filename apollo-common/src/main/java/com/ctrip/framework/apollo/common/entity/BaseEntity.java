@@ -1,5 +1,6 @@
 package com.ctrip.framework.apollo.common.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.google.common.base.MoreObjects;
 import com.google.common.base.MoreObjects.ToStringHelper;
 
@@ -16,12 +17,14 @@ public abstract class BaseEntity {
     private String dataChangeCreatedBy;
 
     @Column(name = "data_change_created_time", nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date dataChangeCreatedTime;
 
     @Column(name = "data_change_last_modified_by")
     private String dataChangeLastModifiedBy;
 
     @Column(name = "data_change_last_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date dataChangeLastModifiedTime;
 
     public String getDataChangeCreatedBy() {
