@@ -10,7 +10,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     username: growingio
     password: postgres
-    url: jdbc:postgresql://localhost:5532/apollo-config
+    url: jdbc:postgresql://localhost:5532/apolloconfig
 ctrip:
   appid: 100003171
 server:
