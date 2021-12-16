@@ -136,7 +136,7 @@ public class AccessKeyServiceWithCacheTest {
 		accessKey.setAppId(appId);
 		accessKey.setSecret(secret);
 		accessKey.setEnabled(enabled);
-		accessKey.setDeleted(deleted ? 1 : 0);
+		accessKey.setDeleted(deleted);
 		accessKey.setDataChangeLastModifiedTime(new Date(dataChangeLastModifiedTime));
 		return accessKey;
 	}

@@ -16,7 +16,6 @@
  */
 package com.ctrip.framework.apollo.common.entity;
 
-
 import com.ctrip.framework.apollo.common.utils.InputValidator;
 import com.ctrip.framework.apollo.core.enums.ConfigFileFormat;
 import org.hibernate.annotations.SQLDelete;
@@ -29,17 +28,16 @@ import javax.validation.constraints.Pattern;
 @Entity
 @Table(name = "app_namespace")
 @SQLDelete(sql = "Update app_namespace set deleted = 1 where id = ?")
-@Where(clause = "deleted = 0")
+@Where(clause = "deleted = false")
 public class AppNamespace extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     private long id;
     @NotBlank(message = "AppNamespace Name cannot be blank")
-    @Pattern(
-            regexp = InputValidator.CLUSTER_NAMESPACE_VALIDATOR,
-            message = "Invalid Namespace format: " + InputValidator.INVALID_CLUSTER_NAMESPACE_MESSAGE + " & " + InputValidator.INVALID_NAMESPACE_NAMESPACE_MESSAGE
-    )
+    @Pattern(regexp = InputValidator.CLUSTER_NAMESPACE_VALIDATOR, message = "Invalid Namespace format: "
+            + InputValidator.INVALID_CLUSTER_NAMESPACE_MESSAGE + " & "
+            + InputValidator.INVALID_NAMESPACE_NAMESPACE_MESSAGE)
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -50,7 +48,7 @@ public class AppNamespace extends BaseEntity {
     @Column(name = "format", nullable = false)
     private String format;
 
-    @Column(name = "is_public", columnDefinition = "Bit default '0'")
+    @Column(name = "is_public")
     private boolean isPublic = false;
 
     @Column(name = "comment")
@@ -110,7 +108,7 @@ public class AppNamespace extends BaseEntity {
 
     @Override
     public String toString() {
-        return toStringHelper().add("name", name).add("appId", appId).add("comment", comment)
-                .add("format", format).add("isPublic", isPublic).toString();
+        return toStringHelper().add("name", name).add("appId", appId).add("comment", comment).add("format", format)
+                .add("isPublic", isPublic).toString();
     }
 }

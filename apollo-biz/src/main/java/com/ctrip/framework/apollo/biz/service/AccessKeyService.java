@@ -91,7 +91,7 @@ public class AccessKeyService {
 			throw new BadRequestException("AccessKey should disable first");
 		}
 
-		accessKey.setDeleted(0);
+		accessKey.setDeleted(Boolean.FALSE);
 		accessKey.setDataChangeLastModifiedBy(operator);
 		accessKeyRepository.save(accessKey);
 

@@ -28,7 +28,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "user_role")
 @SQLDelete(sql = "Update user_role set deleted = 1 where id = ?")
-@Where(clause = "deleted = 0")
+@Where(clause = "deleted = false")
 public class UserRole extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

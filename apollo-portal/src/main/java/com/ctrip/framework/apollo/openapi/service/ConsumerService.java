@@ -281,7 +281,7 @@ public class ConsumerService {
 		Set<String> appIds = new HashSet<>();
 
 		roleIterable.forEach(role -> {
-			if (!(role.getDeleted() == 1)) {
+			if (!role.isDeleted()) {
 				String roleName = role.getRoleName();
 				String appId = RoleUtils.extractAppIdFromRoleName(roleName);
 				appIds.add(appId);

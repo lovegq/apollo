@@ -52,7 +52,7 @@ public class AppService {
 			return;
 		}
 
-		app.setDeleted(0);
+		app.setDeleted(Boolean.FALSE);
 		app.setDataChangeLastModifiedBy(operator);
 		appRepository.save(app);
 

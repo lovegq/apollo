@@ -126,7 +126,7 @@ public class DefaultRolePermissionService implements RolePermissionService {
 		List<UserRole> existedUserRoles = userRoleRepository.findByUserIdInAndRoleId(userIds, role.getId());
 
 		for (UserRole userRole : existedUserRoles) {
-			userRole.setDeleted(1);
+			userRole.setDeleted(Boolean.TRUE);
 			userRole.setDataChangeLastModifiedTime(new Date());
 			userRole.setDataChangeLastModifiedBy(operatorUserId);
 		}

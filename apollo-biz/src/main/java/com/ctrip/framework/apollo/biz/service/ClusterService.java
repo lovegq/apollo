@@ -110,7 +110,7 @@ public class ClusterService {
 		// delete linked namespaces
 		namespaceService.deleteByAppIdAndClusterName(cluster.getAppId(), cluster.getName(), operator);
 
-		cluster.setDeleted(0);
+		cluster.setDeleted(Boolean.FALSE);
 		cluster.setDataChangeLastModifiedBy(operator);
 		clusterRepository.save(cluster);
 

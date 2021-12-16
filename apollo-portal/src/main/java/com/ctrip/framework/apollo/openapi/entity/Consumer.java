@@ -31,7 +31,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "consumer")
 @SQLDelete(sql = "Update consumer set deleted = 1 where id = ?")
-@Where(clause = "deleted = 0")
+@Where(clause = "deleted = false")
 public class Consumer extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

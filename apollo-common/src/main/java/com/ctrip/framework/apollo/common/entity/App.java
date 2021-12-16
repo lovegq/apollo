@@ -27,7 +27,7 @@ import javax.validation.constraints.Pattern;
 @Entity
 @Table(name = "app")
 @SQLDelete(sql = "update app set deleted = 1 where id = ?")
-@Where(clause = "deleted = 0")
+@Where(clause = "deleted = false")
 public class App extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

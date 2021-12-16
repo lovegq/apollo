@@ -27,7 +27,7 @@ import javax.persistence.*;
  */
 @Table(name = "server_config")
 @SQLDelete(sql = "update server_config set deleted = 1 where id = ?")
-@Where(clause = "deleted = 0")
+@Where(clause = "deleted = false")
 @Entity
 public class ServerConfig extends BaseEntity {
 

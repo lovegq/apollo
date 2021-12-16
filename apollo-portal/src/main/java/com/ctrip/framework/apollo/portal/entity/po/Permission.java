@@ -34,7 +34,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "permission")
 @SQLDelete(sql = "update permission set deleted = 1 where id = ?")
-@Where(clause = "deleted = 0")
+@Where(clause = "deleted = false")
 public class Permission extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
