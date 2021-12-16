@@ -24,8 +24,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "namespace")
-@SQLDelete(sql = "Update namespace set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@SQLDelete(sql = "Update namespace set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class Namespace extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -24,8 +24,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "privilege")
-@SQLDelete(sql = "Update privilege set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@SQLDelete(sql = "Update privilege set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class Privilege extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

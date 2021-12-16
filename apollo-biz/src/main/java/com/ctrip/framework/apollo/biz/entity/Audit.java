@@ -24,8 +24,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "audit")
-@SQLDelete(sql = "Update audit set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@SQLDelete(sql = "Update audit set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class Audit extends BaseEntity {
 
     public enum OP {

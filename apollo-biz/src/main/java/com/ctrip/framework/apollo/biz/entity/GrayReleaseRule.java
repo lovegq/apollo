@@ -24,8 +24,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "gray_release_rule")
-@SQLDelete(sql = "Update gray_release_rule set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@SQLDelete(sql = "Update gray_release_rule set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class GrayReleaseRule extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -24,8 +24,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "item")
-@SQLDelete(sql = "Update item set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "Update item set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class Item extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

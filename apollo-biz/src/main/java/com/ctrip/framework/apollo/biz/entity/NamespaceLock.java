@@ -23,7 +23,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "namespace_lock")
-@Where(clause = "is_deleted = 0")
+@Where(clause = "deleted = 0")
 public class NamespaceLock extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

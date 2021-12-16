@@ -27,8 +27,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "release")
-@SQLDelete(sql = "Update release set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@SQLDelete(sql = "Update release set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class Release extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

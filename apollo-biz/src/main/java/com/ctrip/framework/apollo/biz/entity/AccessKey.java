@@ -24,8 +24,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "access_key")
-@SQLDelete(sql = "Update access_key set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@SQLDelete(sql = "Update access_key set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class AccessKey extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

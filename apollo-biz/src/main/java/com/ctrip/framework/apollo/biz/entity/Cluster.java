@@ -27,8 +27,8 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "cluster")
-@SQLDelete(sql = "Update cluster set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@SQLDelete(sql = "Update cluster set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class Cluster extends BaseEntity implements Comparable<Cluster> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
