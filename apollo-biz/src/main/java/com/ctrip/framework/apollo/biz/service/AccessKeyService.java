@@ -30,73 +30,71 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class AccessKeyService {
 
-  private static final int ACCESSKEY_COUNT_LIMIT = 5;
+	private static final int ACCESSKEY_COUNT_LIMIT = 5;
 
-  private final AccessKeyRepository accessKeyRepository;
-  private final AuditService auditService;
+	private final AccessKeyRepository accessKeyRepository;
+	private final AuditService auditService;
 
-  public AccessKeyService(
-      AccessKeyRepository accessKeyRepository,
-      AuditService auditService) {
-    this.accessKeyRepository = accessKeyRepository;
-    this.auditService = auditService;
-  }
+	public AccessKeyService(AccessKeyRepository accessKeyRepository, AuditService auditService) {
+		this.accessKeyRepository = accessKeyRepository;
+		this.auditService = auditService;
+	}
 
-  public List<AccessKey> findByAppId(String appId) {
-    return accessKeyRepository.findByAppId(appId);
-  }
+	public List<AccessKey> findByAppId(String appId) {
+		return accessKeyRepository.findByAppId(appId);
+	}
 
-  @Transactional
-  public AccessKey create(String appId, AccessKey entity) {
-    long count = accessKeyRepository.countByAppId(appId);
-    if (count >= ACCESSKEY_COUNT_LIMIT) {
-      throw new BadRequestException("AccessKeys count limit exceeded");
-    }
+	@Transactional
+	public AccessKey create(String appId, AccessKey entity) {
+		long count = accessKeyRepository.countByAppId(appId);
+		if (count >= ACCESSKEY_COUNT_LIMIT) {
+			throw new BadRequestException("AccessKeys count limit exceeded");
+		}
 
-    entity.setId(0L);
-    entity.setAppId(appId);
-    entity.setDataChangeLastModifiedBy(entity.getDataChangeCreatedBy());
-    AccessKey accessKey = accessKeyRepository.save(entity);
+		entity.setId(0L);
+		entity.setAppId(appId);
+		entity.setDataChangeLastModifiedBy(entity.getDataChangeCreatedBy());
+		AccessKey accessKey = accessKeyRepository.save(entity);
 
-    auditService.audit(AccessKey.class.getSimpleName(), accessKey.getId(), Audit.OP.INSERT,
-        accessKey.getDataChangeCreatedBy());
+		auditService.audit(AccessKey.class.getSimpleName(), accessKey.getId(), Audit.OP.INSERT,
+				accessKey.getDataChangeCreatedBy());
 
-    return accessKey;
-  }
+		return accessKey;
+	}
 
-  @Transactional
-  public AccessKey update(String appId, AccessKey entity) {
-    long id = entity.getId();
-    String operator = entity.getDataChangeLastModifiedBy();
+	@Transactional
+	public AccessKey update(String appId, AccessKey entity) {
+		long id = entity.getId();
+		String operator = entity.getDataChangeLastModifiedBy();
 
-    AccessKey accessKey = accessKeyRepository.findOneByAppIdAndId(appId, id);
-    if (accessKey == null) {
-      throw new BadRequestException("AccessKey not exist");
-    }
+		AccessKey accessKey = accessKeyRepository.findOneByAppIdAndId(appId, id);
+		if (accessKey == null) {
+			throw new BadRequestException("AccessKey not exist");
+		}
 
-    accessKey.setEnabled(entity.isEnabled());
-    accessKey.setDataChangeLastModifiedBy(operator);
-    accessKeyRepository.save(accessKey);
+		accessKey.setEnabled(entity.isEnabled());
+		accessKey.setDataChangeLastModifiedBy(operator);
+		accessKeyRepository.save(accessKey);
 
-    auditService.audit(AccessKey.class.getSimpleName(), id, Audit.OP.UPDATE, operator);
-    return accessKey;
-  }
+		auditService.audit(AccessKey.class.getSimpleName(), id, Audit.OP.UPDATE, operator);
+		return accessKey;
+	}
 
-  @Transactional
-  public void delete(String appId, long id, String operator) {
-    AccessKey accessKey = accessKeyRepository.findOneByAppIdAndId(appId, id);
-    if (accessKey == null) {
-      throw new BadRequestException("AccessKey not exist");
-    }
+	@Transactional
+	public void delete(String appId, long id, String operator) {
+		AccessKey accessKey = accessKeyRepository.findOneByAppIdAndId(appId, id);
+		if (accessKey == null) {
+			throw new BadRequestException("AccessKey not exist");
+		}
 
-    if (accessKey.isEnabled()) {
-      throw new BadRequestException("AccessKey should disable first");
-    }
+		if (accessKey.isEnabled()) {
+			throw new BadRequestException("AccessKey should disable first");
+		}
 
-    accessKey.setDeleted(Boolean.TRUE);
-    accessKey.setDataChangeLastModifiedBy(operator);
-    accessKeyRepository.save(accessKey);
+		accessKey.setDeleted(0);
+		accessKey.setDataChangeLastModifiedBy(operator);
+		accessKeyRepository.save(accessKey);
 
-    auditService.audit(AccessKey.class.getSimpleName(), id, Audit.OP.DELETE, operator);
-  }
+		auditService.audit(AccessKey.class.getSimpleName(), id, Audit.OP.DELETE, operator);
+	}
 }

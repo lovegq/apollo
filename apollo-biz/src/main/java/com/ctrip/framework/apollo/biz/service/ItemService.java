@@ -62,7 +62,7 @@ public class ItemService {
       throw new IllegalArgumentException("item not exist. ID:" + id);
     }
 
-    item.setDeleted(true);
+    item.setDeleted(0);
     item.setDataChangeLastModifiedBy(operator);
     Item deletedItem = itemRepository.save(item);
 

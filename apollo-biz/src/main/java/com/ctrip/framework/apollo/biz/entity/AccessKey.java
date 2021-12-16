@@ -27,54 +27,53 @@ import javax.persistence.*;
 @SQLDelete(sql = "Update access_key set is_deleted = 1 where id = ?")
 @Where(clause = "is_deleted = 0")
 public class AccessKey extends BaseEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private long id;
-    @Column(name = "app_id", nullable = false)
-    private String appId;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private long id;
+	@Column(name = "app_id", nullable = false)
+	private String appId;
 
-    @Column(name = "secret", nullable = false)
-    private String secret;
+	@Column(name = "secret", nullable = false)
+	private String secret;
 
-    @Column(name = "is_enabled", columnDefinition = "Bit default '0'")
-    private boolean enabled;
+	@Column(name = "enabled")
+	private boolean enabled;
 
-    public String getAppId() {
-        return appId;
-    }
+	public String getAppId() {
+		return appId;
+	}
 
-    public void setAppId(String appId) {
-        this.appId = appId;
-    }
+	public void setAppId(String appId) {
+		this.appId = appId;
+	}
 
-    public String getSecret() {
-        return secret;
-    }
+	public String getSecret() {
+		return secret;
+	}
 
-    public void setSecret(String secret) {
-        this.secret = secret;
-    }
+	public void setSecret(String secret) {
+		this.secret = secret;
+	}
 
-    public boolean isEnabled() {
-        return enabled;
-    }
+	public boolean isEnabled() {
+		return enabled;
+	}
 
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
 
-    public long getId() {
-        return id;
-    }
+	public long getId() {
+		return id;
+	}
 
-    public void setId(long id) {
-        this.id = id;
-    }
+	public void setId(long id) {
+		this.id = id;
+	}
 
-    @Override
-    public String toString() {
-        return toStringHelper().add("appId", appId).add("secret", secret)
-                .add("enabled", enabled).toString();
-    }
+	@Override
+	public String toString() {
+		return toStringHelper().add("appId", appId).add("secret", secret).add("enabled", enabled).toString();
+	}
 }

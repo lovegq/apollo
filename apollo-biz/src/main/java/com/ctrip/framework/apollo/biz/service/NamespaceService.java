@@ -313,7 +313,7 @@ public class NamespaceService {
 
     namespaceLockService.unlock(namespace.getId());
 
-    namespace.setDeleted(true);
+    namespace.setDeleted(0);
     namespace.setDataChangeLastModifiedBy(operator);
 
     auditService.audit(Namespace.class.getSimpleName(), namespace.getId(), Audit.OP.DELETE, operator);
