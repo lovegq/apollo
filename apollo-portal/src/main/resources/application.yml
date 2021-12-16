@@ -14,6 +14,8 @@ spring:
     url: jdbc:postgresql://localhost:5532/apollo-portal
     username: growingio
     password: postgres
+  profiles:
+    active: auth
 server:
   port: 8070
   compression:
