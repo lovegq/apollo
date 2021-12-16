@@ -10,7 +10,7 @@ import java.util.Date;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class BaseEntity {
     @Column(name = "IsDeleted", columnDefinition = "Bit default '0'")
-    protected boolean isDeleted = false;
+    protected boolean is_deleted = false;
 
     @Column(name = "DataChange_CreatedBy", nullable = false)
     private String dataChangeCreatedBy;
