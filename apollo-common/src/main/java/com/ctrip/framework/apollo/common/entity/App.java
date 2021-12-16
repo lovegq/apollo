@@ -25,8 +25,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Entity
-@Table(name = "App")
-@SQLDelete(sql = "Update App set isDeleted = 1 where id = ?")
+@Table(name = "app")
+@SQLDelete(sql = "Update app set isDeleted = 1 where id = ?")
 @Where(clause = "isDeleted = 0")
 public class App extends BaseEntity {
     @Id
