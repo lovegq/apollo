@@ -1,12 +1,9 @@
 spring:
   application:
     name: apollo-adminservice
-  profiles:
-    active: ${apollo_profile}
   cloud:
     consul:
       enabled: false
-
 ctrip:
   appid: 100003172
 
@@ -15,7 +12,7 @@ server:
 
 logging:
   file:
-    name: /opt/logs/100003172/apollo-adminservice.log
+    name: /Users/growingio/Documents/logs/apollo-adminservice.log
 
 eureka:
   instance:
