@@ -17,61 +17,55 @@
 package com.ctrip.framework.apollo.openapi.entity;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
-
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
 @Table(name = "consumer_role")
-@SQLDelete(sql = "Update consumer_role set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@SQLDelete(sql = "Update consumer_role set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class ConsumerRole extends BaseEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private long id;
-	@Column(name = "consumer_id", nullable = false)
-	private long consumerId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private long id;
+    @Column(name = "consumer_id", nullable = false)
+    private long consumerId;
 
-	@Column(name = "role_id", nullable = false)
-	private long roleId;
+    @Column(name = "role_id", nullable = false)
+    private long roleId;
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public long getConsumerId() {
-		return consumerId;
-	}
+    public long getConsumerId() {
+        return consumerId;
+    }
 
-	public void setConsumerId(long consumerId) {
-		this.consumerId = consumerId;
-	}
+    public void setConsumerId(long consumerId) {
+        this.consumerId = consumerId;
+    }
 
-	public long getRoleId() {
-		return roleId;
-	}
+    public long getRoleId() {
+        return roleId;
+    }
 
-	public void setRoleId(long roleId) {
-		this.roleId = roleId;
-	}
+    public void setRoleId(long roleId) {
+        this.roleId = roleId;
+    }
 
-	@Override
-	public String toString() {
-		return toStringHelper().add("consumerId", consumerId).add("roleId", roleId).toString();
-	}
+    @Override
+    public String toString() {
+        return toStringHelper().add("consumerId", consumerId).add("roleId", roleId).toString();
+    }
 }

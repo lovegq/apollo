@@ -28,8 +28,8 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "app_namespace")
-@SQLDelete(sql = "Update app_namespace set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@SQLDelete(sql = "Update app_namespace set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class AppNamespace extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

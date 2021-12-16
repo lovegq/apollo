@@ -30,8 +30,8 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "favorite")
-@SQLDelete(sql = "update favorite set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@SQLDelete(sql = "update favorite set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class Favorite extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

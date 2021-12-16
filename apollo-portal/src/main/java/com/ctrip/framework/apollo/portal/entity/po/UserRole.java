@@ -17,56 +17,50 @@
 package com.ctrip.framework.apollo.portal.entity.po;
 
 import com.ctrip.framework.apollo.common.entity.BaseEntity;
-
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Jason Song(song_s@ctrip.com)
  */
 @Entity
 @Table(name = "user_role")
-@SQLDelete(sql = "Update user_role set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@SQLDelete(sql = "Update user_role set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class UserRole extends BaseEntity {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private long id;
-	@Column(name = "user_id", nullable = false)
-	private String userId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private long id;
+    @Column(name = "user_id", nullable = false)
+    private String userId;
 
-	@Column(name = "role_id", nullable = false)
-	private long roleId;
+    @Column(name = "role_id", nullable = false)
+    private long roleId;
 
-	public long getId() {
-		return id;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public String getUserId() {
-		return userId;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public long getRoleId() {
-		return roleId;
-	}
+    public long getRoleId() {
+        return roleId;
+    }
 
-	public void setRoleId(long roleId) {
-		this.roleId = roleId;
-	}
+    public void setRoleId(long roleId) {
+        this.roleId = roleId;
+    }
 }

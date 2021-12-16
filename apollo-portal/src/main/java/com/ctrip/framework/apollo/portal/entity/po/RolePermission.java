@@ -33,8 +33,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "role_permission")
-@SQLDelete(sql = "Update role_permission set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@SQLDelete(sql = "Update role_permission set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class RolePermission extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

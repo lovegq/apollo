@@ -34,8 +34,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "server_config")
-@SQLDelete(sql = "Update server_config set is_deleted = 1 where id = ?")
-@Where(clause = "is_deleted = 0")
+@SQLDelete(sql = "Update server_config set deleted = 1 where id = ?")
+@Where(clause = "deleted = 0")
 public class ServerConfig extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
