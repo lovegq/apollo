@@ -29,9 +29,9 @@ import javax.persistence.*;
 public class Item extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private long id;
-    @Column(name = "NamespaceId", nullable = false)
+    @Column(name = "namespace_id", nullable = false)
     private long namespaceId;
 
     @Column(name = "key", nullable = false)
@@ -44,7 +44,7 @@ public class Item extends BaseEntity {
     @Column(name = "comment")
     private String comment;
 
-    @Column(name = "LineNum")
+    @Column(name = "line_num")
     private Integer lineNum;
 
     public String getComment() {

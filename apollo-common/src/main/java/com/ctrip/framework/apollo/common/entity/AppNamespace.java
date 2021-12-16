@@ -28,32 +28,32 @@ import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "app_namespace")
-@SQLDelete(sql = "Update app_namespace set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "Update app_namespace set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 public class AppNamespace extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private long id;
     @NotBlank(message = "AppNamespace Name cannot be blank")
     @Pattern(
             regexp = InputValidator.CLUSTER_NAMESPACE_VALIDATOR,
             message = "Invalid Namespace format: " + InputValidator.INVALID_CLUSTER_NAMESPACE_MESSAGE + " & " + InputValidator.INVALID_NAMESPACE_NAMESPACE_MESSAGE
     )
-    @Column(name = "Name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @NotBlank(message = "AppId cannot be blank")
-    @Column(name = "AppId", nullable = false)
+    @Column(name = "app_id", nullable = false)
     private String appId;
 
-    @Column(name = "Format", nullable = false)
+    @Column(name = "format", nullable = false)
     private String format;
 
-    @Column(name = "IsPublic", columnDefinition = "Bit default '0'")
+    @Column(name = "is_public", columnDefinition = "Bit default '0'")
     private boolean isPublic = false;
 
-    @Column(name = "Comment")
+    @Column(name = "comment")
     private String comment;
 
     public long getId() {

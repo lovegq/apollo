@@ -24,32 +24,32 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "gray_release_rule")
-@SQLDelete(sql = "Update gray_release_rule set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "Update gray_release_rule set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 public class GrayReleaseRule extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private long id;
-    @Column(name = "appId", nullable = false)
+    @Column(name = "app_id", nullable = false)
     private String appId;
 
-    @Column(name = "ClusterName", nullable = false)
+    @Column(name = "cluster_name", nullable = false)
     private String clusterName;
 
-    @Column(name = "NamespaceName", nullable = false)
+    @Column(name = "namespace_name", nullable = false)
     private String namespaceName;
 
-    @Column(name = "BranchName", nullable = false)
+    @Column(name = "branch_name", nullable = false)
     private String branchName;
 
-    @Column(name = "Rules")
+    @Column(name = "rules")
     private String rules;
 
-    @Column(name = "releaseId", nullable = false)
+    @Column(name = "release_id", nullable = false)
     private Long releaseId;
 
-    @Column(name = "BranchStatus", nullable = false)
+    @Column(name = "branch_status", nullable = false)
     private int branchStatus;
 
     public long getId() {

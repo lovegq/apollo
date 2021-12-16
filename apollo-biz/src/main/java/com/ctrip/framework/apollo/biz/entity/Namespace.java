@@ -24,20 +24,20 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "namespace")
-@SQLDelete(sql = "Update namespace set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "Update namespace set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 public class Namespace extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private long id;
-    @Column(name = "appId", nullable = false)
+    @Column(name = "app_id", nullable = false)
     private String appId;
 
-    @Column(name = "ClusterName", nullable = false)
+    @Column(name = "cluster_name", nullable = false)
     private String clusterName;
 
-    @Column(name = "NamespaceName", nullable = false)
+    @Column(name = "namespace_name", nullable = false)
     private String namespaceName;
 
     public Namespace() {

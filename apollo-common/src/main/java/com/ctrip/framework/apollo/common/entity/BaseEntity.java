@@ -9,19 +9,19 @@ import java.util.Date;
 @MappedSuperclass
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class BaseEntity {
-    @Column(name = "IsDeleted", columnDefinition = "Bit default '0'")
-    protected boolean is_deleted = false;
+    @Column(name = "is_deleted", columnDefinition = "Bit default '0'")
+    protected boolean isDeleted = false;
 
-    @Column(name = "DataChange_CreatedBy", nullable = false)
+    @Column(name = "data_change_created_by", nullable = false)
     private String dataChangeCreatedBy;
 
-    @Column(name = "DataChange_CreatedTime", nullable = false)
+    @Column(name = "data_change_created_time", nullable = false)
     private Date dataChangeCreatedTime;
 
-    @Column(name = "DataChange_LastModifiedBy")
+    @Column(name = "data_change_last_modified_by")
     private String dataChangeLastModifiedBy;
 
-    @Column(name = "DataChange_LastTime")
+    @Column(name = "data_change_last_time")
     private Date dataChangeLastModifiedTime;
 
     public String getDataChangeCreatedBy() {

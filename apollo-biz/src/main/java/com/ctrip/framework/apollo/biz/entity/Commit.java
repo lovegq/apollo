@@ -24,27 +24,27 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "commit")
-@SQLDelete(sql = "Update commit set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "Update commit set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 public class Commit extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private long id;
     @Lob
-    @Column(name = "ChangeSets", nullable = false)
+    @Column(name = "change_sets", nullable = false)
     private String changeSets;
 
-    @Column(name = "AppId", nullable = false)
+    @Column(name = "app_id", nullable = false)
     private String appId;
 
-    @Column(name = "ClusterName", nullable = false)
+    @Column(name = "cluster_name", nullable = false)
     private String clusterName;
 
-    @Column(name = "NamespaceName", nullable = false)
+    @Column(name = "namespace_name", nullable = false)
     private String namespaceName;
 
-    @Column(name = "Comment")
+    @Column(name = "comment")
     private String comment;
 
     public String getChangeSets() {

@@ -23,13 +23,13 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "namespace_lock")
-@Where(clause = "isDeleted = 0")
+@Where(clause = "is_deleted = 0")
 public class NamespaceLock extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private long id;
-    @Column(name = "NamespaceId")
+    @Column(name = "namespace_id")
     private long namespaceId;
 
     public long getId() {

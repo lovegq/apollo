@@ -26,26 +26,26 @@ import javax.persistence.*;
  * @author Jason Song(song_s@ctrip.com)
  */
 @Table(name = "server_config")
-@SQLDelete(sql = "Update server_config set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "update server_config set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 @Entity
 public class ServerConfig extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private long id;
 
-    @Column(name = "Key", nullable = false)
+    @Column(name = "key", nullable = false)
     private String key;
 
-    @Column(name = "Cluster", nullable = false)
+    @Column(name = "cluster", nullable = false)
     private String cluster;
 
-    @Column(name = "Value", nullable = false)
+    @Column(name = "value", nullable = false)
     private String value;
 
-    @Column(name = "Comment", nullable = false)
+    @Column(name = "comment", nullable = false)
     private String comment;
 
 

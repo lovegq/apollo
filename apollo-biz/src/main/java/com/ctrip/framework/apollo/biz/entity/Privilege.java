@@ -24,21 +24,21 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "privilege")
-@SQLDelete(sql = "Update privilege set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "Update privilege set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 public class Privilege extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private long id;
 
-    @Column(name = "Name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "PrivilType", nullable = false)
+    @Column(name = "privil_type", nullable = false)
     private String privilType;
 
-    @Column(name = "NamespaceId")
+    @Column(name = "namespace_id")
     private long namespaceId;
 
     public String getName() {

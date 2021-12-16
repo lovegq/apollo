@@ -24,8 +24,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "audit")
-@SQLDelete(sql = "Update audit set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "Update audit set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 public class Audit extends BaseEntity {
 
     public enum OP {
@@ -34,18 +34,18 @@ public class Audit extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private long id;
-    @Column(name = "EntityName", nullable = false)
+    @Column(name = "entity_name", nullable = false)
     private String entityName;
 
-    @Column(name = "EntityId")
+    @Column(name = "entity_id")
     private Long entityId;
 
-    @Column(name = "OpName", nullable = false)
+    @Column(name = "op_name", nullable = false)
     private String opName;
 
-    @Column(name = "Comment")
+    @Column(name = "comment")
     private String comment;
 
     public String getComment() {

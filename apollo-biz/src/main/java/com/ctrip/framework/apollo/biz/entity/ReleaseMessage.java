@@ -29,13 +29,13 @@ import java.util.Date;
 public class ReleaseMessage {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private long id;
 
-    @Column(name = "Message", nullable = false)
+    @Column(name = "message", nullable = false)
     private String message;
 
-    @Column(name = "DataChange_LastTime")
+    @Column(name = "data_change_last_time")
     private Date dataChangeLastModifiedTime;
 
     @PrePersist

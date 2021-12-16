@@ -570,7 +570,7 @@
                         <failOnNoGitDirectory>false</failOnNoGitDirectory>
                     </configuration>
                 </plugin>
-                <plugin>
+              <!--  <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>flatten-maven-plugin</artifactId>
                     <version>1.1.0</version>
@@ -594,7 +594,7 @@
                             </goals>
                         </execution>
                     </executions>
-                </plugin>
+                </plugin>-->  
                 <!-- Need to set releases.repo and snapshots.repo properties in your .m2/settings.xml -->
             </plugins>
         </pluginManagement>

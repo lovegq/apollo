@@ -27,20 +27,20 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "cluster")
-@SQLDelete(sql = "Update cluster set isDeleted = 1 where id = ?")
-@Where(clause = "isDeleted = 0")
+@SQLDelete(sql = "Update cluster set is_deleted = 1 where id = ?")
+@Where(clause = "is_deleted = 0")
 public class Cluster extends BaseEntity implements Comparable<Cluster> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private long id;
-    @Column(name = "Name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "AppId", nullable = false)
+    @Column(name = "app_id", nullable = false)
     private String appId;
 
-    @Column(name = "ParentClusterId", nullable = false)
+    @Column(name = "parent_cluster_id", nullable = false)
     private long parentClusterId;
 
     public String getAppId() {
